@@ -1,0 +1,53 @@
+import { useEffect, useRef } from "react";
+
+/**
+ * Hook to auto-logout user after inactivity timeout.
+ * @param {number} timeoutMinutes - Minutes of inactivity before logout (default 30)
+ * @param {function} onTimeout - Callback when timeout triggers (e.g., logout & redirect)
+ */
+export function useSessionTimeout(timeoutMinutes = 30, onTimeout) {
+  const timeoutRef = useRef(null);
+  const warningTimeoutRef = useRef(null);
+  const warningShownRef = useRef(false);
+
+  const resetTimeout = () => {
+    clearTimeout(timeoutRef.current);
+    clearTimeout(warningTimeoutRef.current);
+    warningShownRef.current = false;
+
+    const timeoutMs = timeoutMinutes * 60 * 1000;
+    const warningMs = (timeoutMinutes - 2) * 60 * 1000; // warn 2 min before logout
+
+    // Show warning 2 minutes before logout
+    warningTimeoutRef.current = setTimeout(() => {
+      if (!warningShownRef.current) {
+        warningShownRef.current = true;
+        console.warn(`Session will expire in 2 minutes due to inactivity.`);
+        // Optional: show a modal/notification to user
+      }
+    }, warningMs);
+
+    // Auto-logout after full timeout
+    timeoutRef.current = setTimeout(() => {
+      console.warn("Session expired due to inactivity. Logging out...");
+      if (onTimeout) onTimeout();
+    }, timeoutMs);
+  };
+
+  useEffect(() => {
+    // Listen for user activity (mouse, keyboard, touch)
+    const events = ["mousedown", "keydown", "touchstart", "click"];
+    const handlers = events.map(event =>
+      window.addEventListener(event, resetTimeout)
+    );
+
+    resetTimeout(); // Initialize timeout on mount
+
+    return () => {
+      // Cleanup
+      clearTimeout(timeoutRef.current);
+      clearTimeout(warningTimeoutRef.current);
+      events.forEach(event => window.removeEventListener(event, resetTimeout));
+    };
+  }, [timeoutMinutes, onTimeout]);
+}

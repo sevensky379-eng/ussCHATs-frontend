@@ -1,0 +1,17 @@
+.animated-logo {
+  display: flex;
+  align-items: center;
+  height: 60px;
+}
+
+.logo-image {
+  height: 100%;
+  width: auto;
+  max-height: 60px;
+  object-fit: contain;
+}
+
+/* Respect reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .logo-image { animation: none; }
+}

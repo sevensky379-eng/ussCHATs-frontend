@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 300" role="img" aria-labelledby="title desc">
+  <title id="title">uCHAT logo</title>
+  <desc id="desc">Circular logo with three green hand-drawn circles, blue speech bubble containing &lt;uCHAT/&gt; text</desc>
+  
+  <!-- Three green circles (hand-drawn style) -->
+  <!-- Outer green circle -->
+  <circle cx="150" cy="150" r="135" fill="none" stroke="#00FF00" stroke-width="6" stroke-linecap="round"/>
+  
+  <!-- Middle green circle -->
+  <circle cx="150" cy="150" r="120" fill="none" stroke="#00FF00" stroke-width="5" stroke-linecap="round"/>
+  
+  <!-- Inner green circle -->
+  <circle cx="150" cy="150" r="105" fill="none" stroke="#00FF00" stroke-width="4" stroke-linecap="round"/>
+  
+  <!-- Blue speech bubble centered -->
+  <g transform="translate(150, 135)">
+    <!-- Speech bubble: rounded rectangle with tail pointing bottom-right -->
+    <path d="M -70 -30 
+             Q -80 -30 -85 -20
+             L -85 20
+             Q -85 30 -75 30
+             L 75 30
+             Q 85 30 85 20
+             L 85 -20
+             Q 85 -30 75 -30
+             Z
+             M 45 30
+             L 25 30
+             L 15 50
+             L 5 30
+             L -75 30" 
+          fill="none" 
+          stroke="#0066FF" 
+          stroke-width="4" 
+          stroke-linecap="round" 
+          stroke-linejoin="round"/>
+    
+    <!-- &lt;uCHAT/&gt; text -->
+    <text x="-70" y="5" font-family="Arial, sans-serif" font-size="30" font-weight="bold" fill="#000000">
+      <tspan>&lt;uCHAT/&gt;</tspan>
+    </text>
+  </g>
+</svg>

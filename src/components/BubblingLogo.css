@@ -1,0 +1,276 @@
+.bubbling-logo-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 20px 0;
+  margin-bottom: 20px;
+  min-height: 400px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  position: relative;
+  overflow: hidden;
+}
+
+.bubbling-logo-container::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: radial-gradient(circle at 20% 80%, rgba(120, 119, 198, 0.3) 0%, transparent 50%),
+              radial-gradient(circle at 80% 20%, rgba(255, 119, 198, 0.3) 0%, transparent 50%),
+              radial-gradient(circle at 40% 40%, rgba(120, 219, 226, 0.3) 0%, transparent 50%);
+  animation: bubble-bg 20s ease-in-out infinite;
+}
+
+@keyframes bubble-bg {
+  0%, 100% { transform: translateY(0px) rotate(0deg); }
+  33% { transform: translateY(-10px) rotate(120deg); }
+  66% { transform: translateY(-5px) rotate(240deg); }
+}
+
+.bubbling-logo {
+  display: inline-flex;
+  align-items: center;
+  font-size: 48px;
+  font-weight: 800;
+  color: #0a84ff;
+  letter-spacing: 2px;
+  position: relative;
+  z-index: 2;
+}
+
+.bubbling-letter {
+  display: inline-block;
+  transform-origin: center bottom;
+  animation: bubble 1.8s ease-in-out infinite;
+  transition: transform 0.3s ease;
+  opacity: 0;
+}
+
+.bubbling-letter.animate {
+  opacity: 1;
+}
+
+.bubbling-letter:hover {
+  transform: scale(1.2) translateY(-5px);
+}
+
+@keyframes bubble {
+  0%, 100% {
+    transform: translateY(0) scale(1);
+    opacity: 1;
+  }
+  25% {
+    transform: translateY(-8px) scale(1.05);
+    opacity: 0.9;
+  }
+  50% {
+    transform: translateY(-12px) scale(1.1);
+    opacity: 0.95;
+  }
+  75% {
+    transform: translateY(-8px) scale(1.05);
+    opacity: 0.9;
+  }
+}
+
+.bubbling-letter.space {
+  width: 0.3em;
+}
+
+/* Gradient effect for different letters representing hardworking and hope */
+.bubbling-letter:nth-child(1),
+.bubbling-letter:nth-child(2),
+.bubbling-letter:nth-child(3) {
+  background: linear-gradient(135deg, #0a84ff, #006edc);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.bubbling-letter:nth-child(4),
+.bubbling-letter:nth-child(5),
+.bubbling-letter:nth-child(6),
+.bubbling-letter:nth-child(7) {
+  background: linear-gradient(135deg, #ff6b35, #f7931e);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.bubbling-letter:nth-child(8) {
+  background: linear-gradient(135deg, #4caf50, #2e7d32);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.logo-subtitle {
+  font-size: 1.2rem;
+  color: rgba(255,255,255,0.8);
+  text-align: center;
+  margin: 1rem 0 2rem 0;
+  position: relative;
+  z-index: 2;
+  opacity: 0;
+  animation: fadeInUp 1s ease-out 1s both;
+}
+
+.action-buttons {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  justify-content: center;
+  position: relative;
+  z-index: 2;
+  opacity: 0;
+  animation: fadeInUp 1s ease-out 1.5s both;
+}
+
+.action-btn {
+  padding: 12px 24px;
+  border: none;
+  border-radius: 25px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+}
+
+.action-btn.primary {
+  background: #25d366;
+  color: white;
+  box-shadow: 0 4px 15px rgba(37, 211, 102, 0.3);
+}
+
+.action-btn.primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(37, 211, 102, 0.4);
+}
+
+.action-btn.secondary {
+  background: rgba(255,255,255,0.2);
+  color: white;
+  border: 2px solid white;
+  backdrop-filter: blur(10px);
+}
+
+.action-btn.secondary:hover {
+  background: rgba(255,255,255,0.3);
+  transform: translateY(-2px);
+}
+
+/* Offline container styles */
+.offline-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  padding: 20px;
+  text-align: center;
+}
+
+.offline-container h2 {
+  margin-bottom: 2rem;
+  font-size: 1.5rem;
+}
+
+.game-buttons {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.game-btn {
+  padding: 12px 20px;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.game-btn.tictactoe {
+  background: #25d366;
+  color: white;
+}
+
+.game-btn.rockpaper {
+  background: #ff6b35;
+  color: white;
+}
+
+.game-btn.numberguess {
+  background: #9c27b0;
+  color: white;
+}
+
+.game-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+}
+
+/* Game container styles */
+.game-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  padding: 20px;
+  position: relative;
+}
+
+.back-btn {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  padding: 8px 16px;
+  background: rgba(255,255,255,0.2);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Respect reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .bubbling-letter {
+    animation: none !important;
+    transform: none !important;
+    opacity: 1 !important;
+  }
+
+  .bubbling-logo-container::before {
+    animation: none !important;
+  }
+
+  .logo-subtitle,
+  .action-buttons {
+    animation: none !important;
+    opacity: 1 !important;
+  }
+}
+
