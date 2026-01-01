@@ -1,12 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import './BubblingLogo.css';
-import { useOffline } from '../hooks/useOffline';
-import { TicTacToe, RockPaperScissors, NumberGuessing, WordGuessing, InfiniteRunner } from './Games';
 
 const BubblingLogo = () => {
   const [animationStarted, setAnimationStarted] = useState(false);
-  const [currentGame, setCurrentGame] = useState(null);
-  const isOffline = useOffline();
 
   useEffect(() => {
     // Start animation after component mounts
@@ -17,37 +13,21 @@ const BubblingLogo = () => {
     return () => clearTimeout(timer);
   }, []);
 
-  // If offline, show a game instead of the animation
-  if (isOffline && !currentGame) {
-    return (
-      <div className="offline-container">
-        <h2>You're offline! Play a game while you wait.</h2>
-        <div className="game-buttons">
-          <button onClick={() => setCurrentGame('tictactoe')} className="game-btn tictactoe">
-            Tic Tac Toe
-          </button>
-          <button onClick={() => setCurrentGame('rockpaperscissors')} className="game-btn rockpaper">
-            Rock Paper Scissors
-          </button>
-          <button onClick={() => setCurrentGame('numberguessing')} className="game-btn numberguess">
-            Number Guessing
-          </button>
-        </div>
-      </div>
-    );
-  }
+  return (
+    <div className={`bubbling-logo ${animationStarted ? 'animate' : ''}`}>
+      <span>U</span>
+      <span>S</span>
+      <span>S</span>
+      <span>C</span>
+      <span>H</span>
+      <span>A</span>
+      <span>T</span>
+      <span>S</span>
+    </div>
+  );
+};
 
-  if (currentGame) {
-    return (
-      <div className="game-container">
-        <button
-          onClick={() => setCurrentGame(null)}
-          className="back-btn"
-        >
-          Back
-        </button>
-
-        {currentGame === 'tictactoe' && <TicTacToe />}
+export default BubblingLogo;
         {currentGame === 'rockpaperscissors' && <RockPaperScissors />}
         {currentGame === 'numberguessing' && <NumberGuessing />}
         {currentGame === 'wordguessing' && <WordGuessing />}
