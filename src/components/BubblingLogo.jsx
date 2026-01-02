@@ -3,6 +3,7 @@ import './BubblingLogo.css';
 
 const BubblingLogo = () => {
   const [animationStarted, setAnimationStarted] = useState(false);
+  const text = "ussCHATs";
 
   useEffect(() => {
     // Start animation after component mounts
@@ -13,25 +14,25 @@ const BubblingLogo = () => {
     return () => clearTimeout(timer);
   }, []);
 
-  return (
-    <div className={`bubbling-logo ${animationStarted ? 'animate' : ''}`}>
-      <span>U</span>
-      <span>S</span>
-      <span>S</span>
-      <span>C</span>
-      <span>H</span>
-      <span>A</span>
-      <span>T</span>
-      <span>S</span>
-    </div>
-  );
-};
+  // Helper functions for button actions
+  const scrollToSidebar = () => {
+    const sidebar = document.querySelector('.sidebar-container');
+    if (sidebar) {
+      sidebar.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
 
-const text = "ussCHATs";
+  const focusSearch = () => {
+    const searchInput = document.querySelector('input[placeholder*="Search"]');
+    if (searchInput) {
+      searchInput.focus();
+      searchInput.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
 
   return (
     <div className="bubbling-logo-container">
-      <div className="bubbling-logo">
+      <div className={`bubbling-logo ${animationStarted ? 'animate' : ''}`}>
         {text.split('').map((letter, index) => (
           <span
             key={index}
@@ -45,37 +46,21 @@ const text = "ussCHATs";
           </span>
         ))}
       </div>
+
       <div className="logo-subtitle">
-        Connect, Chat, Create Memories
+        Chat like PRO
       </div>
+
       <div className="action-buttons">
-        <button
-          onClick={() => {
-            // Scroll to sidebar or show search
-            const sidebar = document.querySelector('.sidebar-container');
-            if (sidebar) {
-              sidebar.scrollIntoView({ behavior: 'smooth' });
-            }
-          }}
-          className="action-btn primary"
-        >
+        <button onClick={scrollToSidebar} className="action-btn primary">
           Start Chatting
         </button>
-        <button
-          onClick={() => {
-            // Show search modal or scroll to search
-            const searchInput = document.querySelector('input[placeholder*="Search"]');
-            if (searchInput) {
-              searchInput.focus();
-              searchInput.scrollIntoView({ behavior: 'smooth' });
-            }
-          }}
-          className="action-btn secondary"
-        >
+        <button onClick={focusSearch} className="action-btn secondary">
           Find Friends
         </button>
       </div>
     </div>
   );
-export default BubblingLogo;
+};
 
+export default BubblingLogo;
