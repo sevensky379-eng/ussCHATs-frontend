@@ -77,7 +77,5 @@ const text = "ussCHATs";
       </div>
     </div>
   );
-};
-
 export default BubblingLogo;
 
