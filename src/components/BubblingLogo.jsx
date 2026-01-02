@@ -27,16 +27,7 @@ const BubblingLogo = () => {
   );
 };
 
-export default BubblingLogo;
-        {currentGame === 'rockpaperscissors' && <RockPaperScissors />}
-        {currentGame === 'numberguessing' && <NumberGuessing />}
-        {currentGame === 'wordguessing' && <WordGuessing />}
-        {currentGame === 'infiniterunner' && <InfiniteRunner />}
-      </div>
-    );
-  }
-
-  const text = "ussCHATs";
+const text = "ussCHATs";
 
   return (
     <div className="bubbling-logo-container">
